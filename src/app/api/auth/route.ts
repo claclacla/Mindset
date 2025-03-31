@@ -14,7 +14,6 @@ const customer: User = {
 export async function POST(req: Request) {
     const { username, password } = await req.json();
 
-    console.log(customer, username, password);
     if (!customer || customer.username !== username) {
         return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }

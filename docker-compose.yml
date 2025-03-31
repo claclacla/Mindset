@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  next-app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app  # Syncs your local files with the container
+      - /app/node_modules  # Prevents overwriting node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
