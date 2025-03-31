@@ -17,8 +17,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import trainingSessionsReducer from "./trainingSessions/slice";
-import authenticationReducer from "./authentication/slice";
+import trainingSessionsReducer from "./redux/trainingSessions/slice";
+import authenticationReducer from "./redux/authentication/slice";
 
 const rootReducer = combineReducers({
     trainingSessions: trainingSessionsReducer,

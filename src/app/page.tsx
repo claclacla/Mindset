@@ -2,29 +2,20 @@
 
 import { useState } from "react";
 
-import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { TextField } from '@mui/material';
 
 import useIsClient from './hooks/useIsClient';
-import useAuthenticate from './hooks/useAuthenticate';
-import useGetTrainingSessions from './hooks/useGetTrainingSessions';
-
-import { TrainingSession } from './entities/TrainingSession';
-
-import { setTrainingSessions } from "./store/trainingSessions/slice";
-import { setKey } from "./store/authentication/slice";
+import useLogin from "./hooks/useLogin";
 
 export default function Home() {
-    const dispatch = useDispatch();
     const router = useRouter();
 
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
     const { isClient } = useIsClient();
-    const { authenticate } = useAuthenticate();
-    const { getTrainingSessions } = useGetTrainingSessions();
+    const { login } = useLogin();
 
     if (!isClient) {
         return;
@@ -35,14 +26,7 @@ export default function Home() {
 
         // TO DO: Add the logic for the unauthorized case 
 
-        const key: string | undefined = await authenticate({ username, password });
-
-        if (key !== undefined) {
-            dispatch(setKey(key));
-
-            const trainingSessions: TrainingSession[] = await getTrainingSessions({ key });
-            dispatch(setTrainingSessions(trainingSessions));
-        }
+        await login({ username, password });
 
         router.push('/training-sessions');
     }
