@@ -15,8 +15,11 @@ const authenticationSlice = createSlice({
         setKey: (state, action) => {
             state.key = action.payload;
         },
+        unsetKey: (state) => {
+            state.key = undefined;
+        }
     },
 });
 
-export const { setKey } = authenticationSlice.actions;
+export const { setKey, unsetKey } = authenticationSlice.actions;
 export default authenticationSlice.reducer;

@@ -1,14 +1,22 @@
 "use client";
 
 import { useState } from 'react';
-import { Button, Drawer, Typography } from '@mui/material';
+import { Drawer, Typography } from '@mui/material';
 
 import { useRouter } from 'next/navigation';
 
+import useLogout from '@/app/hooks/useLogout';
+
 export default function LeftBar() {
     const router = useRouter();
+    const { logout } = useLogout();
 
     const [open, setOpen] = useState(true);
+
+    async function onClickLogout() {
+        logout();
+        router.push('/');
+    } 
 
     return (
         <Drawer
@@ -51,7 +59,7 @@ export default function LeftBar() {
 
                 <button
                     className="w-full text-left text-white bg-blue-300 hover:bg-blue-500 py-2 px-4 transition"
-                    onClick={() => router.push('/')}
+                    onClick={() => onClickLogout()}
                 >
                     Logout
                 </button>

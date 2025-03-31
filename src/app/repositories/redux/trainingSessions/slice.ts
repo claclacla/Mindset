@@ -21,8 +21,11 @@ const trainingSessionsSlice = createSlice({
             const trainingSession: TrainingSession = action.payload;
             state.list.push(trainingSession);
         },
+        unsetTrainingSessions: (state) => {
+            state.list = []
+        }
     },
 });
 
-export const { setTrainingSessions, addTrainingSessions } = trainingSessionsSlice.actions;
+export const { setTrainingSessions, addTrainingSessions, unsetTrainingSessions } = trainingSessionsSlice.actions;
 export default trainingSessionsSlice.reducer;
