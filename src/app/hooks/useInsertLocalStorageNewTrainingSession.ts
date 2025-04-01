@@ -5,7 +5,7 @@ import { addTrainingSession } from "../repositories/redux/trainingSessions/slice
 
 import { TrainingSession } from "../entities/TrainingSession";
 
-export default function useInsertNewTrainingSession({ trainingSession }: { trainingSession: TrainingSession | undefined }) {
+export default function useInsertLocalStorageNewTrainingSession({ trainingSession }: { trainingSession: TrainingSession | undefined }) {
     const dispatch = useDispatch();
 
     useEffect(() => {

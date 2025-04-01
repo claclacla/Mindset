@@ -8,12 +8,12 @@ import NewTrainingSessionMessage from '@/app/components/NewTrainingSessionMessag
 
 import useIsClient from '@/app/hooks/useIsClient';
 import useNewTrainingSessionWebSocket from '@/app/hooks/useNewTrainingSessionWebSocket';
-import useInsertNewTrainingSession from '@/app/hooks/useInsertNewTrainingSession';
+import useInsertLocalStorageNewTrainingSession from '@/app/hooks/useInsertLocalStorageNewTrainingSession';
 
 export default function TrainingSessions() {
     const { isClient } = useIsClient();
     const { trainingSession } = useNewTrainingSessionWebSocket();
-    useInsertNewTrainingSession({ trainingSession });
+    useInsertLocalStorageNewTrainingSession({ trainingSession });
 
     if (!isClient) {
         return null;
