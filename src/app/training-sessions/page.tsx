@@ -4,14 +4,19 @@ import { Box } from '@mui/material';
 
 import LeftBar from '@/app/components/LeftBar';
 import SessionsTable from '@/app/components/SessionsTable';
+import NewTrainingSessionMessage from '@/app/components/NewTrainingSessionMessage';
 
 import useIsClient from '@/app/hooks/useIsClient';
+import useNewTrainingSessionWebSocket from '@/app/hooks/useNewTrainingSessionWebSocket';
+import useInsertNewTrainingSession from '@/app/hooks/useInsertNewTrainingSession';
 
 export default function TrainingSessions() {
     const { isClient } = useIsClient();
+    const { trainingSession } = useNewTrainingSessionWebSocket();
+    useInsertNewTrainingSession({ trainingSession });
 
     if (!isClient) {
-        return;
+        return null;
     }
 
     return (
@@ -31,6 +36,8 @@ export default function TrainingSessions() {
 
                 <SessionsTable />
             </Box>
+
+            {trainingSession && <NewTrainingSessionMessage trainingSession={trainingSession}/>}
         </Box>
     );
 }

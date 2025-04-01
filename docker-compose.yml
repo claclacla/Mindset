@@ -11,4 +11,13 @@ services:
     environment:
       - NODE_ENV=development
     command: npm run dev
-
+  websocket-server:
+    build: ./websocket  # Path to the WebSocket server
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./websocket:/websocket
+      - /websocket/node_modules
+    environment:
+      - NODE_ENV=production
+    command: node server.js

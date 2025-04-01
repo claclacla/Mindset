@@ -10,6 +10,8 @@ const trainingSessions: LocalTrainingSessions = {
     list: []
 };
 
+// TO DO: Add the logic to check the validity of the TrainingSession objects
+
 const trainingSessionsSlice = createSlice({
     name: "trainingSessions",
     initialState: trainingSessions,
@@ -17,7 +19,7 @@ const trainingSessionsSlice = createSlice({
         setTrainingSessions: (state, action) => {
             state.list = action.payload;
         },
-        addTrainingSessions: (state, action) => {
+        addTrainingSession: (state, action) => {
             const trainingSession: TrainingSession = action.payload;
             state.list.push(trainingSession);
         },
@@ -27,5 +29,5 @@ const trainingSessionsSlice = createSlice({
     },
 });
 
-export const { setTrainingSessions, addTrainingSessions, unsetTrainingSessions } = trainingSessionsSlice.actions;
+export const { setTrainingSessions, addTrainingSession, unsetTrainingSessions } = trainingSessionsSlice.actions;
 export default trainingSessionsSlice.reducer;
