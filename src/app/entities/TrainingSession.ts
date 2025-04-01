@@ -1,5 +1,5 @@
 export interface TrainingSession {
-    id: number,
+    id?: number,
     lastName: string,
     firstName: string,
     age: number,

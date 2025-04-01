@@ -3,7 +3,7 @@ import { TrainingSession } from "../../entities/TrainingSession";
 export default async function getTrainingSessions({ key }: { key: string }) {
     let trainingSessions: TrainingSession[] = [];
 
-    await fetch("/api/trainingSessions", {
+    await fetch("/api/getTrainingSessions", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

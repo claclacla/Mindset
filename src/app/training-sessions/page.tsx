@@ -30,9 +30,7 @@ export default function TrainingSessions() {
                     p: 3,
                 }}
             >
-                <div className="mb-4">
-                    <h2>Training sessions</h2>
-                </div>
+                <div className="text-xl font-semibold mb-4">Training sessions</div>
 
                 <SessionsTable />
             </Box>
