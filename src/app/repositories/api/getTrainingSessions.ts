@@ -1,13 +1,16 @@
 import { TrainingSession } from "../../entities/TrainingSession";
 
-export default async function getTrainingSessions({ key }: { key: string }) {
+import { APIGetTrainingSessionParameters } from "@/app/repositories/api/parameters/APIGetTrainingSessionParameters";
+import { APIGetTrainingSessionResponse } from "@/app/repositories/api/responses/APIGetTrainingSessionResponse";
+
+export default async function getTrainingSessions({ apiGetTrainingSessionParameters }: { apiGetTrainingSessionParameters: APIGetTrainingSessionParameters }): Promise<APIGetTrainingSessionResponse> {
     let trainingSessions: TrainingSession[] = [];
 
     await fetch("/api/getTrainingSessions", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${key}`,
+            "Authorization": `Bearer ${apiGetTrainingSessionParameters.key}`,
         },
     })
         .then((response) => {
@@ -32,5 +35,9 @@ export default async function getTrainingSessions({ key }: { key: string }) {
             console.error("Error fetching training sessions:", error.message);
         });
 
-    return trainingSessions;
+    const apiGetTrainingSessionResponse: APIGetTrainingSessionResponse = {
+        trainingSessions
+    }
+
+    return apiGetTrainingSessionResponse;
 }
