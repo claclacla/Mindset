@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 import { WEBSOCKET } from "../../../config.json";
 
-import { TrainingSession } from "../entities/TrainingSession";
+import { TrainingSession } from "@/app/entities/TrainingSession";
+import mapObjectToTrainingSession from "@/app/mappers/mapObjectToTrainingSession";
 
 export default function useNewTrainingSessionWebSocket() {
     const [trainingSession, setTrainingSession] = useState<TrainingSession | undefined>(undefined);
@@ -18,11 +19,18 @@ export default function useNewTrainingSessionWebSocket() {
                 console.log("Connected to WebSocket server");
             };
 
-            // TO DO: Implement the logic to check if the received data are valid
-
             ws.onmessage = (event) => {
-                console.log("Received:", event.data);
-                setTrainingSession(JSON.parse(event.data));
+                //console.log("Received:", event.data);
+
+                try {
+                    const obj: any = JSON.parse(event.data);
+                    const trainingSession: TrainingSession = mapObjectToTrainingSession(obj);
+                    
+                    setTrainingSession(trainingSession);
+                }
+                catch(error) {
+
+                }
             };
 
             ws.onerror = (error) => {

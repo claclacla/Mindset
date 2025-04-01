@@ -22,6 +22,10 @@ export default async function getTrainingSessions({ key }: { key: string }) {
             return response.json();
         })
         .then((response) => {
+
+            // TO DO: Implement the logic to check if the response is a valid response
+            // TO DO: Implement the logic to check if the response training sessions DTO are valid
+
             trainingSessions = response;
         })
         .catch((error) => {

@@ -21,6 +21,9 @@ export default async function authenticate({ username, password }: User) {
             return response.json();
         })
         .then((response) => {
+
+            // TO DO: Implement the logic to check if the response contains the token
+            
             key = response.token;
         })
         .catch((error) => {
