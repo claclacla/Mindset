@@ -21,6 +21,7 @@ const trainingSessionsSlice = createSlice({
         },
         addTrainingSession: (state, action) => {
             const trainingSession: TrainingSession = action.payload;
+
             state.list.push(trainingSession);
         },
         unsetTrainingSessions: (state) => {
