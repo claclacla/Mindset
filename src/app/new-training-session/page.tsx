@@ -1,6 +1,7 @@
 "use client";
 
-import { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Box, TextField } from '@mui/material';
 
@@ -8,9 +9,20 @@ import LeftBar from '@/app/components/LeftBar';
 
 import useIsClient from '@/app/hooks/useIsClient';
 
-import { TrainingSession } from '../entities/TrainingSession';
+import { RootState } from '@/app/repositories/store';
+
+import { TrainingSession } from '@/app/entities/TrainingSession';
+
+import { APIInsertTrainingSessionParameters } from '@/app/repositories/api/parameters/APIInsertTrainingSessionParameters';
+import { APIInsertTrainingSessionResponse } from '../repositories/api/responses/APIInsertTrainingSessionResponse';
+import insertTrainingSession from '@/app/repositories/api/insertTrainingSession';
+
+import { addTrainingSession } from '@/app/repositories/redux/trainingSessions/slice';
 
 export default function NewTrainingSession() {
+    const dispatch = useDispatch();
+
+    const key: string | undefined = useSelector((state: RootState) => state.authentication.key);
     const [trainingSession, setTrainingSession] = useState<TrainingSession>({
         lastName: "",
         firstName: "",
@@ -33,8 +45,20 @@ export default function NewTrainingSession() {
         }));
     };
 
-    function onSubmit() {
+    async function onSubmit(e: React.FormEvent) {
+        e.preventDefault();
 
+        if(key === undefined) {
+            return;
+        }
+
+        const apiInsertTrainingSessionParameters: APIInsertTrainingSessionParameters = {
+            key,
+            trainingSession
+        }
+
+        const apiInsertTrainingSessionResponse: APIInsertTrainingSessionResponse = await insertTrainingSession({ apiInsertTrainingSessionParameters });
+        dispatch(addTrainingSession(apiInsertTrainingSessionResponse.trainingSession));
     }
 
     return (
