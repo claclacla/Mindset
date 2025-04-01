@@ -6,7 +6,7 @@ export interface TrainingSession {
     distance: number
 }
 
-export function initTrainingSession() {
+export function initTrainingSession(): TrainingSession {
     return {
         lastName: "",
         firstName: "",

@@ -3,7 +3,8 @@ import { TrainingSession } from "../../entities/TrainingSession";
 import { APIGetTrainingSessionParameters } from "@/app/repositories/api/parameters/APIGetTrainingSessionParameters";
 import { APIGetTrainingSessionResponse } from "@/app/repositories/api/responses/APIGetTrainingSessionResponse";
 
-export default async function getTrainingSessions({ apiGetTrainingSessionParameters }: { apiGetTrainingSessionParameters: APIGetTrainingSessionParameters }): Promise<APIGetTrainingSessionResponse> {
+export default async function getTrainingSessions({ apiGetTrainingSessionParameters }:
+    { apiGetTrainingSessionParameters: APIGetTrainingSessionParameters }): Promise<APIGetTrainingSessionResponse> {
     let trainingSessions: TrainingSession[] = [];
 
     await fetch("/api/getTrainingSessions", {
