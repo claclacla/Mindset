@@ -26,7 +26,7 @@ export default function NewTrainingSession() {
                     p: 3,
                 }}
             >
-                <div className="text-xl font-semibold mb-4">New training session</div>
+                <div className="text-xl font-semibold mb-4">Insert training session</div>
 
                 <InsertTrainingSessionForm />
 

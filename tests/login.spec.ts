@@ -13,9 +13,6 @@ test('should log in successfully with valid credentials', async ({ page }) => {
 
     // Assert the redirection to the training sessions page
     await expect(page).toHaveURL('http://localhost:3000/training-sessions'); // Adjust if needed
-
-    // Check that the page contains some training sessions or other content expected after login
-    //await expect(page.locator('h1')).toHaveText('Training Sessions'); // Adjust based on your content
 });
 
 test('should show authentication error with invalid credentials', async ({ page }) => {
@@ -32,5 +29,5 @@ test('should show authentication error with invalid credentials', async ({ page 
     // Assert that the authentication error is displayed
     const errorMessage = await page.locator('.bg-red-300'); // The error message element
     await expect(errorMessage).toBeVisible();
-    await expect(errorMessage).toHaveText('Errore di autenticazione');
+    await expect(errorMessage).toHaveText('Authentication error');
 });

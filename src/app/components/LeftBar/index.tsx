@@ -49,9 +49,10 @@ export default function LeftBar() {
                 </button>
                 <button
                     className="w-full text-left text-white bg-blue-300 hover:bg-blue-500 py-2 px-4 transition"
-                    onClick={() => router.push('/new-training-session')}
+                    name="go-to-insert-training-session"
+                    onClick={() => router.push('/insert-training-session')}
                 >
-                    New session
+                    Insert session
                 </button>
 
                 {/* Empty div takes up available space */}

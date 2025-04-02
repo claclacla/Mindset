@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
+import { useRouter } from 'next/navigation';
+
 import { setTrainingSessions } from "@/app/repositories/redux/trainingSessions/slice";
 import { setKey } from "@/app/repositories/redux/authentication/slice";
-
-import { User } from "@/app/entities/User";
 
 import authenticate from "@/app/repositories/api/authenticate";
 import getTrainingSessions from "@/app/repositories/api/getTrainingSessions";
@@ -15,8 +15,14 @@ import { APIAuthenticateResponse } from "@/app/repositories/api/responses/APIAut
 import { APIGetTrainingSessionResponse } from "@/app/repositories/api/responses/APIGetTrainingSessionResponse";
 import { APIGetTrainingSessionParameters } from "@/app/repositories/api/parameters/APIGetTrainingSessionParameters";
 
-export default function useLogin() {
+import { initUser, User } from "@/app/entities/User";
+
+export default function useLoginFormHandler() {
     const dispatch = useDispatch();
+    const router = useRouter();
+
+    const [user, setUser] = useState<User>(initUser());
+    const [authenticationError, setAuthenticationError] = useState<boolean>(false);
 
     async function login({ username, password }: User) {
         const apiAuthenticateParameters: APIAuthenticateParameters = {
@@ -38,7 +44,35 @@ export default function useLogin() {
         dispatch(setTrainingSessions(apiGetTrainingSessionResponse.trainingSessions));
     }
 
-    return {
-        login
+    function onFormFieldChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const { name, value } = event.target;
+
+        setAuthenticationError(false);
+
+        setUser((prevData: User) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const onSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // TO DO: Add the logic for the unauthorized case 
+
+        try {
+            await login({ username: user.username, password: user.password });
+            router.push('/training-sessions');
+        }
+        catch (error) {
+            setAuthenticationError(true);
+        }
     }
+
+    return {
+        user,
+        authenticationError,
+        onFormFieldChange,
+        onSubmit
+    };
 }
