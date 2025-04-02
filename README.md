@@ -59,6 +59,20 @@ Typing anything in the command line will send the data for a new training sessio
 
 On the first submission, the session will be added to those stored locally in the application. On the second submission, it will not be added because a session with ID "12" is already present.
 
+## Testing
+
+For unit testing use the following command:
+
+```bash
+npm test
+```
+
+For e2e testing use the following command:
+
+```bash
+npx playwright test
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

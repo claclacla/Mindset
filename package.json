@@ -1,41 +1,64 @@
 {
-  "name": "mindset",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/material": "^7.0.1",
-    "@mui/x-data-grid": "^7.28.2",
-    "@reduxjs/toolkit": "^2.6.1",
-    "bcryptjs": "^3.0.2",
-    "jsonwebtoken": "^9.0.2",
-    "next": "15.2.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-redux": "^9.2.0",
-    "redux-persist": "^6.0.0",
-    "socket.io": "^4.8.1",
-    "wscat": "^6.0.1"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@playwright/test": "^1.51.1",
-    "@tailwindcss/postcss": "^4",
-    "@types/jsonwebtoken": "^9.0.9",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@types/ws": "^8.18.0",
-    "eslint": "^9",
-    "eslint-config-next": "15.2.4",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+    "name": "mindset",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "jest"
+    },
+    "jest": {
+        "roots": [
+            "<rootDir>/unit-tests"
+        ],
+        "testMatch": [
+            "<rootDir>/unit-tests/**/*.ts"
+        ],
+        "transform": {
+            "^.+\\.ts$": "ts-jest"
+        },
+        "testPathIgnorePatterns": [
+            "/node_modules/"
+        ]
+    },
+    "dependencies": {
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.0",
+        "@mui/material": "^7.0.1",
+        "@mui/x-data-grid": "^7.28.2",
+        "@reduxjs/toolkit": "^2.6.1",
+        "bcryptjs": "^3.0.2",
+        "jsonwebtoken": "^9.0.2",
+        "next": "15.2.4",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-redux": "^9.2.0",
+        "redux-persist": "^6.0.0",
+        "socket.io": "^4.8.1",
+        "wscat": "^6.0.1"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@playwright/test": "^1.51.1",
+        "@tailwindcss/postcss": "^4",
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/react": "^16.2.0",
+        "@testing-library/user-event": "^14.6.1",
+        "@types/jest": "^29.5.14",
+        "@types/jsonwebtoken": "^9.0.9",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "@types/ws": "^8.18.0",
+        "babel-jest": "^29.7.0",
+        "eslint": "^9",
+        "eslint-config-next": "15.2.4",
+        "jest": "^29.7.0",
+        "tailwindcss": "^4",
+        "ts-jest": "^29.3.1",
+        "typescript": "^5"
+    }
 }
