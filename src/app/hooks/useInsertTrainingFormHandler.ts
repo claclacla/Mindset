@@ -9,16 +9,19 @@ import insertTrainingSession from '@/app/repositories/api/insertTrainingSession'
 
 import { addTrainingSession } from '@/app/repositories/redux/trainingSessions/slice';
 
-import { initTrainingSession, TrainingSession } from '@/app/entities/TrainingSession';
+import { initTrainingSession, trainingSessionHasEmptyField, TrainingSession } from '@/app/entities/TrainingSession';
 
-export default function useInsertAPINewTrainingSession() {
+export default function useInsertTrainingFormHandler() {
     const dispatch = useDispatch();
 
     const key: string | undefined = useSelector((state: RootState) => state.authentication.key);
     const [trainingSession, setTrainingSession] = useState<TrainingSession>(initTrainingSession());
+    const [hasEmptyFieldsError, setHasEmptyFieldsError] = useState<boolean>(false);
 
     function onFormFieldChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         const { name, value } = event.target;
+
+        setHasEmptyFieldsError(false);
 
         setTrainingSession((prevData: TrainingSession) => ({
             ...prevData,
@@ -28,6 +31,11 @@ export default function useInsertAPINewTrainingSession() {
 
     async function onSubmit(e: React.FormEvent) {
         e.preventDefault();
+
+        if (trainingSessionHasEmptyField(trainingSession)) {
+            setHasEmptyFieldsError(true);
+            return;
+        }
 
         if (key === undefined) {
             return;
@@ -45,6 +53,7 @@ export default function useInsertAPINewTrainingSession() {
     }
 
     return {
+        hasEmptyFieldsError,
         trainingSession,
         onFormFieldChange,
         onSubmit

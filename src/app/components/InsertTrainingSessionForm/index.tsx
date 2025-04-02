@@ -1,9 +1,11 @@
 import { TextField } from "@mui/material";
 
-import useInsertAPINewTrainingSession from "@/app/hooks/useInsertAPINewTrainingSession";
+import useInsertTrainingFormHandler from "@/app/hooks/useInsertTrainingFormHandler";
+
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 export default function InsertTrainingSessionForm() {
-    const { trainingSession, onFormFieldChange, onSubmit } = useInsertAPINewTrainingSession();
+    const { hasEmptyFieldsError, trainingSession, onFormFieldChange, onSubmit } = useInsertTrainingFormHandler();
 
     return (
         <form
@@ -55,6 +57,8 @@ export default function InsertTrainingSessionForm() {
                     onChange={onFormFieldChange}
                 />
             </div>
+
+            <ErrorMessage message={"The form has empty fields"} showError={hasEmptyFieldsError} />
 
             <button type="submit" className="w-full px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                 Insert

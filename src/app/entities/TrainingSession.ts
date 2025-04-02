@@ -14,3 +14,13 @@ export function initTrainingSession(): TrainingSession {
         distance: 0
     };
 }
+
+export function trainingSessionHasEmptyField(trainingSession: TrainingSession): boolean {
+    let hasEmptyField: boolean = false;
+
+    if(trainingSession.lastName === "" || trainingSession.firstName === "") {
+        hasEmptyField = true;
+    }
+
+    return hasEmptyField;
+}

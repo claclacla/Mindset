@@ -18,17 +18,14 @@ test('should insert a new training session', async ({ page }) => {
     await page.fill('input[name="firstName"]', 'Simone');
     await page.fill('input[name="lastName"]', 'Adelchino');
     await page.fill('input[name="age"]', '72');
-    await page.fill('input[name="distance"]', '1'); 
+    await page.fill('input[name="distance"]', '1');
 
     // Submit the form
     await page.click('button[type="submit"]'); // The button to submit the form
 
-    // Assert the page contains a success message or other expected content after insertion
-    //const successMessage = await page.locator('text=Training session inserted successfully'); // Adjust the success message if necessary
-    //await expect(successMessage).toBeVisible();
-
     // Check if the new session is visible on the training sessions page
-    await page.goto('http://localhost:3000/training-sessions'); 
+    await page.goto('http://localhost:3000/training-sessions');
+    await page.waitForTimeout(1000);
     await expect(page.locator('[title="Simone"]')).toBeVisible();
     await expect(page.locator('[title="Adelchino"]')).toBeVisible();
 });
@@ -40,7 +37,8 @@ test('should show validation errors if fields are missing', async ({ page }) => 
     // Leave the fields empty and submit the form
     await page.click('button[type="submit"]');
 
-    // Assert that validation error messages are shown for required fields
-    await expect(page.locator('text=Firstname is required')).toBeVisible(); // Adjust error message based on your validation logic
-    await expect(page.locator('text=Lastname is required')).toBeVisible();  // Adjust error message based on your validation logic
+    // Assert that the authentication error is displayed
+    const errorMessage = await page.locator('.bg-red-300'); // The error message element
+    await expect(errorMessage).toBeVisible();
+    await expect(errorMessage).toHaveText('The form has empty fields');
 });
