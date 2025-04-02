@@ -1,5 +1,6 @@
 "use client";
 
+import { JSX } from 'react';
 import { TextField } from '@mui/material';
 
 import ErrorMessage from "@/app/components/ErrorMessage";
@@ -7,7 +8,7 @@ import ErrorMessage from "@/app/components/ErrorMessage";
 import useIsClient from '@/app/hooks/useIsClient';
 import useLoginFormHandler from '@/app/hooks/useLoginFormHandler';
 
-export default function Home() {
+export default function Home(): JSX.Element | undefined {
     const { isClient } = useIsClient();
     const { user, onFormFieldChange, onSubmit, authenticationError } = useLoginFormHandler();
 

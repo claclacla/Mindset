@@ -11,7 +11,7 @@ const customer: User = {
     password: "password", 
 };
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<NextResponse>  {
     const { username, password } = await req.json();
 
     if (!customer || customer.username !== username) {

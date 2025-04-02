@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { JSX } from 'react';
 
 import { Snackbar, Alert } from '@mui/material';
 
@@ -8,7 +8,7 @@ import useShowNewTrainingSessionMessage from "@/app/hooks/useShowNewTrainingSess
 
 // TO DO: Implement the logic to show the training session data
 
-export default function NewTrainingSessionMessage({ trainingSession } : {trainingSession: TrainingSession}) {
+export default function NewTrainingSessionMessage({ trainingSession } : {trainingSession: TrainingSession}): JSX.Element {
     const { showNewTrainingSession, onCloseNewTrainingSession } = useShowNewTrainingSessionMessage({ trainingSession });
 
     return (

@@ -4,7 +4,7 @@ import { TrainingSession } from "@/app/entities/TrainingSession";
 
 import { getRandomNumber } from "@/app/types/number/getRandomNumber";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest): Promise<NextResponse>  {
     const { firstName, lastName, age, distance } = await req.json();
 
     const trainingSession: TrainingSession = {

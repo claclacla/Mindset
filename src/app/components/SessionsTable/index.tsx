@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from 'react';
+import { JSX } from 'react';
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/repositories/store";
 import Box from '@mui/material/Box';
@@ -34,7 +35,7 @@ const columns: GridColDef[] = [
     },
 ];
 
-export default function SessionsTable() {
+export default function SessionsTable(): JSX.Element {
     const trainingSessions: TrainingSession[] = useSelector((state: RootState) => state.trainingSessions.list);
 
     return (

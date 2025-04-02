@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 import { Drawer, Typography } from '@mui/material';
 
 import { useRouter } from 'next/navigation';
 
 import useLogout from '@/app/hooks/useLogout';
 
-export default function LeftBar() {
+export default function LeftBar(): JSX.Element {
     const router = useRouter();
     const { logout } = useLogout();
 

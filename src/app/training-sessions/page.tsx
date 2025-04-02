@@ -1,5 +1,6 @@
 "use client";
 
+import { JSX } from 'react';
 import { Box } from '@mui/material';
 
 import LeftBar from '@/app/components/LeftBar';
@@ -10,13 +11,13 @@ import useIsClient from '@/app/hooks/useIsClient';
 import useNewTrainingSessionWebSocket from '@/app/hooks/useNewTrainingSessionWebSocket';
 import useInsertLocalStorageNewTrainingSession from '@/app/hooks/useInsertLocalStorageNewTrainingSession';
 
-export default function TrainingSessions() {
+export default function TrainingSessions(): JSX.Element | undefined {
     const { isClient } = useIsClient();
     const { trainingSession } = useNewTrainingSessionWebSocket();
     useInsertLocalStorageNewTrainingSession({ trainingSession });
 
     if (!isClient) {
-        return null;
+        return;
     }
 
     return (

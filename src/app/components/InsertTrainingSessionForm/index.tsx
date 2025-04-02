@@ -1,10 +1,11 @@
+import { JSX } from "react";
 import { TextField } from "@mui/material";
 
 import useInsertTrainingFormHandler from "@/app/hooks/useInsertTrainingFormHandler";
 
 import ErrorMessage from "@/app/components/ErrorMessage";
 
-export default function InsertTrainingSessionForm() {
+export default function InsertTrainingSessionForm(): JSX.Element {
     const { hasEmptyFieldsError, trainingSession, onFormFieldChange, onSubmit } = useInsertTrainingFormHandler();
 
     return (

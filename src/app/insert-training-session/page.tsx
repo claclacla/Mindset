@@ -1,5 +1,6 @@
 "use client";
 
+import { JSX } from 'react';
 import { Box } from '@mui/material';
 
 import LeftBar from '@/app/components/LeftBar';
@@ -8,7 +9,7 @@ import useIsClient from '@/app/hooks/useIsClient';
 
 import InsertTrainingSessionForm from '../components/InsertTrainingSessionForm';
 
-export default function NewTrainingSession() {
+export default function NewTrainingSession(): JSX.Element | undefined {
     const { isClient } = useIsClient();
 
     if (!isClient) {
