@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { TextField } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 
 import useInsertTrainingFormHandler from "@/app/hooks/useInsertTrainingFormHandler";
 
@@ -9,61 +9,76 @@ export default function InsertTrainingSessionForm(): JSX.Element {
     const { hasEmptyFieldsError, trainingSession, onFormFieldChange, onSubmit } = useInsertTrainingFormHandler();
 
     return (
-        <form
-            onSubmit={onSubmit}
-            className="w-full max-w-md"
-        >
+        <Grid container spacing={2} sx={{ p: 2 }}>
 
-            <div className="mb-6">
-                <TextField
-                    label="Firstname"
-                    variant="outlined"
-                    fullWidth
-                    name="firstName"
-                    value={trainingSession.firstName}
-                    onChange={onFormFieldChange}
-                />
-            </div>
+            <Grid size={12}>
+                <Typography className="text-xl font-semibold">Insert training session</Typography>
+            </Grid>
 
-            <div className="mb-6">
-                <TextField
-                    label="Lastname"
-                    variant="outlined"
-                    fullWidth
-                    name="lastName"
-                    value={trainingSession.lastName}
-                    onChange={onFormFieldChange}
-                />
-            </div>
+            <Grid size={12}>
+                
+                <form onSubmit={onSubmit}>
 
-            <div className="mb-6 flex items-center space-x-4">
-                <TextField
-                    label="Age"
-                    type="number"
-                    variant="outlined"
-                    fullWidth
-                    name="age"
-                    sx={{ marginRight: 4 }}
-                    value={trainingSession.age}
-                    onChange={onFormFieldChange}
-                />
+                    <Grid container spacing={2}>
 
-                <TextField
-                    label="Distance"
-                    type="number"
-                    variant="outlined"
-                    fullWidth
-                    name="distance"
-                    value={trainingSession.distance}
-                    onChange={onFormFieldChange}
-                />
-            </div>
+                        <Grid size={12}>
+                            <TextField
+                                label="Firstname"
+                                variant="outlined"
+                                fullWidth
+                                name="firstName"
+                                value={trainingSession.firstName}
+                                onChange={onFormFieldChange}
+                            />
+                        </Grid>
 
-            <ErrorMessage message={"The form has empty fields"} showError={hasEmptyFieldsError} />
+                        <Grid size={12}>
+                            <TextField
+                                label="Lastname"
+                                variant="outlined"
+                                fullWidth
+                                name="lastName"
+                                value={trainingSession.lastName}
+                                onChange={onFormFieldChange}
+                            />
+                        </Grid>
 
-            <button type="submit" className="w-full px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                Insert
-            </button>
-        </form>
+                        <Grid size={6}>
+                            <TextField
+                                label="Age"
+                                type="number"
+                                variant="outlined"
+                                fullWidth
+                                name="age"
+                                value={trainingSession.age}
+                                onChange={onFormFieldChange}
+                            />
+                        </Grid>
+
+                        <Grid size={6}>
+                            <TextField
+                                label="Distance"
+                                type="number"
+                                variant="outlined"
+                                fullWidth
+                                name="distance"
+                                value={trainingSession.distance}
+                                onChange={onFormFieldChange}
+                            />
+                        </Grid>
+
+                        <ErrorMessage message={"The form has empty fields"} showError={hasEmptyFieldsError} />
+
+                        <Button type="submit" variant="contained" color="primary">
+                            Insert
+                        </Button>
+
+                    </Grid>
+
+                </form>
+
+            </Grid>
+
+        </Grid>
     );
 }
