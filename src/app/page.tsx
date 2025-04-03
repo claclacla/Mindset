@@ -1,7 +1,7 @@
 "use client";
 
 import { JSX } from 'react';
-import { TextField } from '@mui/material';
+import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 
 import ErrorMessage from "@/app/components/ErrorMessage";
 
@@ -17,52 +17,82 @@ export default function Home(): JSX.Element | undefined {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
-
-            <form
-                onSubmit={onSubmit}
-                className="p-6 bg-white rounded-lg shadow-lg w-full max-w-sm"
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column", // Ensures items stack vertically
+                alignItems: "center", // Centers horizontally
+                justifyContent: "center", // Centers vertically
+                minHeight: "100vh", // Makes the box take full viewport height
+                bgcolor: "background.default", // Optional: sets a background color
+            }}
+        >
+            <Box
+                sx={{
+                    width: { xs: "90%", sm: "400px" }, // Responsive width
+                    p: { xs: 2, sm: 4 }, // Padding based on screen size
+                    bgcolor: "white",
+                    boxShadow: 1,
+                    borderRadius: 0,
+                }}
             >
-                <h2 className="text-xl font-semibold text-center mb-6">Login</h2>
 
-                <div className="mb-6">
-                    <div className="text-base">The only valid user is:</div>
-                    <div className="text-sm">Username: scobalit.desio</div>
-                    <div className="text-sm">Password: password</div>
-                </div>
+                <form
+                    onSubmit={onSubmit}
+                    className="p-6 bg-white w-full max-w-sm"
+                >
 
-                <div className="mb-6">
-                    <TextField
-                        label="Username"
-                        variant="outlined"
-                        name="username"
-                        fullWidth
-                        value={user.username}
-                        onChange={onFormFieldChange}
-                    />
-                </div>
+                    <Grid container spacing={2}>
 
-                <div className="mb-6">
-                    <TextField
-                        label="Password"
-                        type="password"
-                        variant="outlined"
-                        name="password"
-                        fullWidth
-                        value={user.password}
-                        onChange={onFormFieldChange}
-                    />
-                </div>
+                        <Grid size={12}>
+                            <Typography sx={{ fontWeight: "bold", textAlign: "center", width: "100%" }} variant="h6">Login</Typography>
+                        </Grid>
 
-                <ErrorMessage message={"Authentication error"} showError={authenticationError}  />
+                        <Typography>
+                            <Typography sx={{ fontSize: "1rem", fontWeight: "bold" }}>
+                                The only valid user is:
+                            </Typography>
+                            <Typography sx={{ fontSize: "0.9rem" }}>
+                                Username: scobalit.desio
+                                <br />
+                                Password: password
+                            </Typography>
+                        </Typography>
 
-                <button type="submit" className="w-full px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    Login
-                </button>
+                        <Grid size={12}>
+                            <TextField
+                                label="Username"
+                                variant="outlined"
+                                name="username"
+                                fullWidth
+                                value={user.username}
+                                onChange={onFormFieldChange}
+                            />
+                        </Grid>
 
+                        <Grid size={12}>
+                            <TextField
+                                label="Password"
+                                type="password"
+                                variant="outlined"
+                                name="password"
+                                fullWidth
+                                value={user.password}
+                                onChange={onFormFieldChange}
+                            />
+                        </Grid>
 
-            </form>
+                        <ErrorMessage message={"Authentication error"} showError={authenticationError} />
 
-        </div>
+                        <Button type="submit" variant="contained" color="primary">
+                            Login
+                        </Button>
+
+                    </Grid>
+
+                </form>
+
+            </Box>
+        </Box>
     );
 }
