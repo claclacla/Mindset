@@ -10,28 +10,24 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { TrainingSession } from '@/app/entities/TrainingSession';
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', headerName: 'ID', width: 10 },
     {
         field: 'firstName',
-        headerName: 'First name',
-        width: 150,
+        headerName: 'First name'
     },
     {
         field: 'lastName',
-        headerName: 'Last name',
-        width: 150,
+        headerName: 'Last name'
     },
     {
         field: 'age',
         headerName: 'Age',
-        type: 'number',
-        width: 110,
+        type: 'number'
     },
     {
         field: 'distance',
         headerName: 'Distance',
-        type: 'number',
-        width: 160,
+        type: 'number'
     },
 ];
 
@@ -39,21 +35,15 @@ export default function SessionsTable(): JSX.Element {
     const trainingSessions: TrainingSession[] = useSelector((state: RootState) => state.trainingSessions.list);
 
     return (
-        <Box sx={{ height: 400, width: '100%' }}>
-            <DataGrid
-                rows={trainingSessions}
-                columns={columns}
-                initialState={{
-                    pagination: {
-                        paginationModel: {
-                            pageSize: 5,
-                        },
-                    },
-                }}
-                pageSizeOptions={[5]}
-                checkboxSelection
-                disableRowSelectionOnClick
-            />
-        </Box>
+        <DataGrid
+            rows={trainingSessions}
+            columns={columns}
+            initialState={{
+                pagination: { paginationModel: { pageSize: 5 } },
+            }}
+            pageSizeOptions={[5]}
+            checkboxSelection
+            disableRowSelectionOnClick
+        />
     );
 }
