@@ -48,15 +48,13 @@ export default function Home(): JSX.Element | undefined {
                             <Typography sx={{ fontWeight: "bold", textAlign: "center", width: "100%" }} variant="h6">Login</Typography>
                         </Grid>
 
-                        <Typography>
-                            <Typography sx={{ fontSize: "1rem", fontWeight: "bold" }}>
-                                The only valid user is:
-                            </Typography>
-                            <Typography sx={{ fontSize: "0.9rem" }}>
-                                Username: scobalit.desio
-                                <br />
-                                Password: password
-                            </Typography>
+                        <Typography sx={{ fontSize: "1rem", fontWeight: "bold" }}>
+                            The only valid user is:
+                        </Typography>
+                        <Typography sx={{ fontSize: "0.9rem" }}>
+                            Username: scobalit.desio
+                            <br />
+                            Password: password
                         </Typography>
 
                         <Grid size={12}>
