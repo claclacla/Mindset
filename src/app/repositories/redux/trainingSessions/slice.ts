@@ -4,12 +4,10 @@ import { TrainingSession } from "@/app/entities/TrainingSession";
 
 interface LocalTrainingSessions {
     list: TrainingSession[]
-    newTrainingSession?: TrainingSession
 }
 
 const trainingSessions: LocalTrainingSessions = {
-    list: [],
-    newTrainingSession: undefined
+    list: []
 };
 
 // TO DO: Add the logic to check the validity of the TrainingSession objects
@@ -23,8 +21,6 @@ const trainingSessionsSlice = createSlice({
         },
         addTrainingSession: (state, action) => {
             const trainingSession: TrainingSession = action.payload;
-
-            state.newTrainingSession = trainingSession;
             state.list.push(trainingSession);
         },
         unsetTrainingSessions: (state) => {

@@ -4,11 +4,11 @@ import useShowNewTrainingSessionMessageOnInsert from '@/app/hooks/useShowNewTrai
 import { Box } from "@mui/system";
 
 export default function NewTrainingSessionMessageOnInsert() {
-    const { newTrainingSession } = useShowNewTrainingSessionMessageOnInsert();
+    const { trainingSession } = useShowNewTrainingSessionMessageOnInsert();
 
     return (
         <Box>
-            { newTrainingSession && <NewTrainingSessionMessage trainingSession={newTrainingSession} />}
+            {trainingSession && <NewTrainingSessionMessage trainingSession={trainingSession} />}
         </Box>
     );
 }
