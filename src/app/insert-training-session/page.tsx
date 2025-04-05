@@ -1,11 +1,13 @@
 "use client";
 
 import { JSX } from 'react';
+
 import { Box } from '@mui/material';
 
 import LeftBar from '@/app/components/LeftBar';
 import InsertTrainingSessionForm from '@/app/components/InsertTrainingSessionForm';
 import ApplicationBar from '@/app/components/ApplicationBar';
+import NewTrainingSessionMessageOnInsert from '@/app/components/NewTrainingSessionMessageOnInsert';
 
 import useIsClient from '@/app/hooks/useIsClient';
 import useIsMobile from '@/app/hooks/useIsMobile';
@@ -34,8 +36,11 @@ export default function NewTrainingSession(): JSX.Element | undefined {
                 <ApplicationBar toggleShowLeftBar={toggleShowLeftBar} />
 
                 <InsertTrainingSessionForm />
+                <NewTrainingSessionMessageOnInsert />
 
             </Box>
+
+            
         </Box>
     );
 }

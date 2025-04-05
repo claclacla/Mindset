@@ -6,6 +6,7 @@ import { Box } from '@mui/material';
 import LeftBar from '@/app/components/LeftBar';
 import InsertTrainingSessionByPromptForm from '@/app/components/InsertTrainingSessionByPromptForm';
 import ApplicationBar from '@/app/components/ApplicationBar';
+import NewTrainingSessionMessageOnInsert from '@/app/components/NewTrainingSessionMessageOnInsert';
 
 import useIsClient from '@/app/hooks/useIsClient';
 import useIsMobile from '@/app/hooks/useIsMobile';
@@ -34,6 +35,7 @@ export default function NewTrainingSessionByPrompt(): JSX.Element | undefined {
                 <ApplicationBar toggleShowLeftBar={toggleShowLeftBar} />
 
                 <InsertTrainingSessionByPromptForm />
+                <NewTrainingSessionMessageOnInsert />
 
             </Box>
         </Box>
