@@ -5,6 +5,12 @@ The application allows an administrator to view and manage users' training sessi
 
 Each session is displayed with the user's first and last name, their age, and the length of the route.
 
+It is possible to insert new training sessions directly from the form page or through the natural language prompt. For example:
+
+```bash
+Insert a new session for the user Simone Adelchino who ran for 45 km and he is 45 years old
+```
+
 It is possible to add new sessions and automatically receive new ones via a websocket.
 
 The only user present is from the baseball team I played for several years ago—the only time in my life I truly practiced sports. I have immortalized that moment, filled with glorious victories, in this application. 
