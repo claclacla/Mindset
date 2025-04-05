@@ -32,6 +32,8 @@
         "@mui/x-data-grid": "^7.28.2",
         "@reduxjs/toolkit": "^2.6.1",
         "bcryptjs": "^3.0.2",
+        "google-auth-library": "^9.15.1",
+        "googleapis": "^148.0.0",
         "jsonwebtoken": "^9.0.2",
         "next": "15.2.4",
         "react": "^19.0.0",

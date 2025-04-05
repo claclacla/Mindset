@@ -47,6 +47,7 @@ export default function useInsertTrainingFormHandler() {
         }
 
         const apiInsertTrainingSessionResponse: APIInsertTrainingSessionResponse = await insertTrainingSession({ apiInsertTrainingSessionParameters });
+
         dispatch(addTrainingSession(apiInsertTrainingSessionResponse.trainingSession));
 
         setTrainingSession(initTrainingSession());

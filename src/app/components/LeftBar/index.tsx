@@ -41,6 +41,11 @@ export default function LeftBar({ showLeftBar, toggleShowLeftBar }: { showLeftBa
                             <ListItemText primary={"Insert training session"} />
                         </ListItemButton>
                     </ListItem>
+                    <ListItem key={"insert-training-session-by-prompt"} disablePadding>
+                        <ListItemButton onClick={() => router.push('/insert-training-session-by-prompt')}>
+                            <ListItemText primary={"Insert training session by prompt"} />
+                        </ListItemButton>
+                    </ListItem>
                     <ListItem key={"logout"} disablePadding>
                         <ListItemButton onClick={() => onClickLogout()}>
                             <ListItemText primary={"Logout"} />
