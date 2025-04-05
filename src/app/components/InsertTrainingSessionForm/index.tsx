@@ -1,12 +1,12 @@
 import { JSX } from "react";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 
-import useInsertTrainingFormHandler from "@/app/hooks/useInsertTrainingFormHandler";
+import useInsertTrainingSessionFormHandler from "@/app/hooks/useInsertTrainingSessionFormHandler";
 
 import ErrorMessage from "@/app/components/ErrorMessage";
 
 export default function InsertTrainingSessionForm(): JSX.Element {
-    const { hasEmptyFieldsError, trainingSession, onFormFieldChange, onSubmit } = useInsertTrainingFormHandler();
+    const { hasEmptyFieldsError, trainingSession, onFormFieldChange, onSubmit } = useInsertTrainingSessionFormHandler();
 
     return (
         <Grid container spacing={2} sx={{ p: 2 }}>

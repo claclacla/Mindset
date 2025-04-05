@@ -11,7 +11,7 @@ import { addTrainingSession } from '@/app/repositories/redux/trainingSessions/sl
 
 import { initTrainingSession, trainingSessionHasEmptyField, TrainingSession } from '@/app/entities/TrainingSession';
 
-export default function useInsertTrainingFormHandler() {
+export default function useInsertTrainingSessionFormHandler() {
     const dispatch = useDispatch();
 
     const key: string | undefined = useSelector((state: RootState) => state.authentication.key);

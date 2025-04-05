@@ -29,7 +29,6 @@ export async function POST(req: NextRequest) {
 
     // Prepare the prompt
     const apiPrompt = `Extract the following data in JSON format:\n\lastName (as 'lastName'), firstName (as 'firstName'), Age (as 'age'), and Distance (as 'distance')\n\nInput: ${prompt}\n\nOutput:`;
-    console.log("API prompt: " + apiPrompt);
 
     try {
         // Authenticate to get access token
@@ -67,7 +66,7 @@ export async function POST(req: NextRequest) {
         const cleanedResponse = responseParts.replace(/```json/g, '').replace(/```/g, '').trim();
 
         // Try to parse the JSON response
-        let jsonResponse;
+        let jsonResponse: any;
 
         try {
             jsonResponse = JSON.parse(cleanedResponse);
@@ -78,19 +77,26 @@ export async function POST(req: NextRequest) {
 
         console.log('Parsed JSON Response:', JSON.stringify(jsonResponse, null, 2));
 
-        const trainingSession: TrainingSession = {
-            firstName: jsonResponse.firstName,
-            lastName: jsonResponse.lastName,
-            age: jsonResponse.age,
-            distance: jsonResponse.distance
-        };
+        if (jsonResponse.firstName !== undefined &&
+            jsonResponse.lastName !== undefined &&
+            jsonResponse.age !== undefined &&
+            jsonResponse.distance !== undefined
+        ) {
+            const trainingSession: TrainingSession = {
+                firstName: jsonResponse.firstName,
+                lastName: jsonResponse.lastName,
+                age: jsonResponse.age,
+                distance: jsonResponse.distance
+            };
 
-        trainingSession.id = getRandomNumber(1, 10000);
+            trainingSession.id = getRandomNumber(1, 10000);
 
-        // Return the response data
-        return NextResponse.json({ data: { trainingSession: trainingSession } }, { status: 200 });
+            return NextResponse.json({ data: { trainingSession: trainingSession } }, { status: 200 });
+        }
+        else {
+            return NextResponse.json({ error: 'Failed to process the request' }, { status: 500 });
+        }
     } catch (error) {
-        console.error('Error in API call:', error);
         return NextResponse.json({ error: 'Failed to process the request' }, { status: 500 });
     }
 }
