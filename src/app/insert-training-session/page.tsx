@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 
 import LeftBar from '@/app/components/LeftBar';
 import InsertTrainingSessionForm from '@/app/components/InsertTrainingSessionForm';
-import ApplicationBar from '../components/ApplicationBar';
+import ApplicationBar from '@/app/components/ApplicationBar';
 
 import useIsClient from '@/app/hooks/useIsClient';
 import useIsMobile from '@/app/hooks/useIsMobile';
