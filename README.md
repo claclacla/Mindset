@@ -70,6 +70,8 @@ On the first submission, the session will be added to those stored locally in th
 
 - Typescript
 - React
+- MUI
+- Tailwind
 - Next.js
 - Firebase: authentication handling
 - Vertex API: training sessions creation via prompt
