@@ -41,6 +41,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The available features are:  
 
+- the application is responsive and can be used on mobile devices
 - Authentication with error handling for incorrect credential input.  
 - Data storage in the application's local storage to manage page reloads.  
 - Display of training sessions already present in the database.  
