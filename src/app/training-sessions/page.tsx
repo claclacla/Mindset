@@ -13,6 +13,7 @@ import useNewTrainingSessionWebSocket from '@/app/hooks/useNewTrainingSessionWeb
 import useInsertLocalStorageNewTrainingSession from '@/app/hooks/useInsertLocalStorageNewTrainingSession';
 import useIsMobile from '@/app/hooks/useIsMobile';
 import useShowLeftBar from '@/app/hooks/useShowLeftBar';
+import checkIfUserLoggedIn from '@/app/hooks/useCheckIfUserLoggedIn';
 
 export default function TrainingSessions(): JSX.Element | undefined {
     const { isClient } = useIsClient();
@@ -21,6 +22,8 @@ export default function TrainingSessions(): JSX.Element | undefined {
 
     const { isMobile } = useIsMobile();
     const { showLeftBar, toggleShowLeftBar } = useShowLeftBar({ isMobile });
+
+    checkIfUserLoggedIn();
 
     if (!isClient) {
         return;

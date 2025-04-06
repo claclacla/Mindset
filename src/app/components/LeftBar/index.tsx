@@ -1,24 +1,21 @@
 "use client";
 
-import { JSX, useState } from 'react';
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemText, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { JSX } from 'react';
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 
 import { useRouter } from 'next/navigation';
 
-import useLogout from '@/app/hooks/useLogout';
+import useAuth from "@/app/hooks/useAuth";
+
+import useLogoutHandler from '@/app/hooks/useLogoutHandler';
 import useIsMobile from '@/app/hooks/useIsMobile';
-import useShowLeftBar from '@/app/hooks/useShowLeftBar';
 
 export default function LeftBar({ showLeftBar, toggleShowLeftBar }: { showLeftBar: boolean, toggleShowLeftBar: () => void }): JSX.Element {
     const router = useRouter();
-    const { logout } = useLogout();
 
     const { isMobile } = useIsMobile();
-
-    async function onClickLogout() {
-        logout();
-        router.push('/');
-    }
+    const { logout } = useAuth();
+    const { logoutHandler } = useLogoutHandler({ logout });
 
     return (
         <Drawer
@@ -47,7 +44,7 @@ export default function LeftBar({ showLeftBar, toggleShowLeftBar }: { showLeftBa
                         </ListItemButton>
                     </ListItem>
                     <ListItem key={"logout"} disablePadding>
-                        <ListItemButton onClick={() => onClickLogout()}>
+                        <ListItemButton onClick={() => logoutHandler()}>
                             <ListItemText primary={"Logout"} />
                         </ListItemButton>
                     </ListItem>

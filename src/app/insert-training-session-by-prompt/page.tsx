@@ -11,11 +11,14 @@ import NewTrainingSessionMessageOnInsert from '@/app/components/NewTrainingSessi
 import useIsClient from '@/app/hooks/useIsClient';
 import useIsMobile from '@/app/hooks/useIsMobile';
 import useShowLeftBar from '@/app/hooks/useShowLeftBar';
+import checkIfUserLoggedIn from '@/app/hooks/useCheckIfUserLoggedIn';
 
 export default function NewTrainingSessionByPrompt(): JSX.Element | undefined {
     const { isClient } = useIsClient();
     const { isMobile } = useIsMobile();
     const { showLeftBar, toggleShowLeftBar } = useShowLeftBar({ isMobile });
+
+    const { user } = checkIfUserLoggedIn();
 
     if (!isClient) {
         return;
@@ -34,7 +37,7 @@ export default function NewTrainingSessionByPrompt(): JSX.Element | undefined {
 
                 <ApplicationBar toggleShowLeftBar={toggleShowLeftBar} />
 
-                <InsertTrainingSessionByPromptForm />
+                {user && <InsertTrainingSessionByPromptForm user={user} />}
                 <NewTrainingSessionMessageOnInsert />
 
             </Box>

@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { RootState } from "@/app/repositories/store";
+import { useDispatch } from "react-redux";
+import { User } from "firebase/auth";
 
 import { APIIInsertTrainingSessionByPromptParameters } from "@/app/repositories/api/parameters/APIInsertTrainingSessionByPromptParameters";
 import { APIIInsertTrainingSessionByPromptResponse } from "@/app/repositories/api/responses/APIIInsertTrainingSessionByPromptResponse";
 import insertTrainingSessionByPrompt from "@/app/repositories/api/insertTrainingSessionByPrompt";
 import { addTrainingSession } from "@/app/repositories/redux/trainingSessions/slice";
 
-export default function useInsertTrainingSessionByPromptFormHandler() {
+export default function useInsertTrainingSessionByPromptFormHandler({ user }: { user: User }) {
     const dispatch = useDispatch();
-    const key: string | undefined = useSelector((state: RootState) => state.authentication.key);
 
     const [prompt, setPrompt] = useState<string>("");
     const [hasEmptyFieldsError, setHasEmptyFieldsError] = useState<boolean>(false);
@@ -31,12 +29,10 @@ export default function useInsertTrainingSessionByPromptFormHandler() {
             return;
         }
 
-        if (key === undefined) {
-            return;
-        }
+        const idToken = await user.getIdToken();
 
         const apiIInsertTrainingSessionByPromptParameters: APIIInsertTrainingSessionByPromptParameters = {
-            key,
+            key: idToken,
             prompt
         };
 

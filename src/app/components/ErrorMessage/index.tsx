@@ -8,7 +8,7 @@ export default function ErrorMessage({ message, showError }: { message: string, 
 
     return (
         <Grid size={12}>
-            {showError && (<Typography sx={{p: 1, backgroundColor: theme.palette.primary.main, fontSize: "1rem", textAlign: "center"}}>{message}</Typography>)}
+            {showError && (<Typography title="error-message" sx={{p: 1, backgroundColor: theme.palette.primary.main, fontSize: "1rem", textAlign: "center"}}>{message}</Typography>)}
         </Grid>
     );
 }

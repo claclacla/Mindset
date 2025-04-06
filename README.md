@@ -65,6 +65,14 @@ Typing anything in the command line will send the data for a new training sessio
 
 On the first submission, the session will be added to those stored locally in the application. On the second submission, it will not be added because a session with ID "12" is already present.
 
+## Stack
+
+- Typescript
+- React
+- Next.js
+- Firebase: authentication handling
+- Vertex API: training sessions creation via prompt
+
 ## Testing
 
 For unit testing use the following command:

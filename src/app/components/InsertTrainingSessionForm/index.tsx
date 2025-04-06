@@ -1,12 +1,13 @@
 import { JSX } from "react";
 import { Button, Grid, TextField, Typography } from "@mui/material";
+import { User } from "firebase/auth";
 
 import useInsertTrainingSessionFormHandler from "@/app/hooks/useInsertTrainingSessionFormHandler";
 
 import ErrorMessage from "@/app/components/ErrorMessage";
 
-export default function InsertTrainingSessionForm(): JSX.Element {
-    const { hasEmptyFieldsError, trainingSession, onFormFieldChange, onSubmit } = useInsertTrainingSessionFormHandler();
+export default function InsertTrainingSessionForm({user}: {user: User}): JSX.Element {
+    const { hasEmptyFieldsError, trainingSession, onFormFieldChange, onSubmit } = useInsertTrainingSessionFormHandler({ user });
 
     return (
         <Grid container spacing={2} sx={{ p: 2 }}>

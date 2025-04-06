@@ -3,17 +3,15 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import trainingSessionsReducer from "./redux/trainingSessions/slice";
-import authenticationReducer from "./redux/authentication/slice";
 
 const rootReducer = combineReducers({
-    trainingSessions: trainingSessionsReducer,
-    authentication: authenticationReducer
+    trainingSessions: trainingSessionsReducer
 })
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['authentication', 'trainingSessions'],
+    whitelist: ['trainingSessions'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

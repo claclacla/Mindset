@@ -1,12 +1,13 @@
 import { JSX } from "react";
 
 import { Button, Grid, TextField, Typography } from "@mui/material";
+import { User } from "firebase/auth";
 
 import useInsertTrainingSessionByPromptFormHandler from "@/app/hooks/useInsertTrainingSessionByPromptFormHandler";
 import ErrorMessage from "@/app/components/ErrorMessage";
 
-export default function InsertTrainingSessionByPromptForm(): JSX.Element {
-    const { hasEmptyFieldsError, prompt, onFormFieldChange, onSubmit } = useInsertTrainingSessionByPromptFormHandler();
+export default function InsertTrainingSessionByPromptForm({user}: {user: User}): JSX.Element {
+    const { hasEmptyFieldsError, prompt, onFormFieldChange, onSubmit } = useInsertTrainingSessionByPromptFormHandler({ user });
 
     return (
         <Grid container spacing={2} sx={{ p: 2 }}>

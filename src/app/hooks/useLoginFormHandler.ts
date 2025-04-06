@@ -3,76 +3,57 @@ import { useDispatch } from "react-redux";
 
 import { useRouter } from 'next/navigation';
 
+import { LoginUser, initLoginUser } from "../entities/LoginUser";
+
 import { setTrainingSessions } from "@/app/repositories/redux/trainingSessions/slice";
-import { setKey } from "@/app/repositories/redux/authentication/slice";
 
-import authenticate from "@/app/repositories/api/authenticate";
 import getTrainingSessions from "@/app/repositories/api/getTrainingSessions";
-
-import { APIAuthenticateParameters } from "@/app/repositories/api/parameters/APIAuthenticateParameters";
-import { APIAuthenticateResponse } from "@/app/repositories/api/responses/APIAuthenticateResponse";
 
 import { APIGetTrainingSessionResponse } from "@/app/repositories/api/responses/APIGetTrainingSessionResponse";
 import { APIGetTrainingSessionParameters } from "@/app/repositories/api/parameters/APIGetTrainingSessionParameters";
 
-import { initUser, User } from "@/app/entities/User";
+import { User } from "firebase/auth";
 
-export default function useLoginFormHandler() {
+export default function useLoginFormHandler({ login }: { login: (email: string, password: string) => Promise<User> }) {
     const dispatch = useDispatch();
     const router = useRouter();
-
-    const [user, setUser] = useState<User>(initUser());
     const [authenticationError, setAuthenticationError] = useState<boolean>(false);
 
-    async function login({ username, password }: User) {
-        const apiAuthenticateParameters: APIAuthenticateParameters = {
-            user: {
-                username,
-                password
-            }
-        }
+    const [ loginUser, setLoginUser ] = useState<LoginUser>(initLoginUser());
 
-        const apiAuthenticateResponse: APIAuthenticateResponse = await authenticate({ apiAuthenticateParameters });
-
-        dispatch(setKey(apiAuthenticateResponse.key));
-
-        const apiGetTrainingSessionParameters: APIGetTrainingSessionParameters = {
-            key: apiAuthenticateResponse.key
-        }
-
-        const apiGetTrainingSessionResponse: APIGetTrainingSessionResponse = await getTrainingSessions({ apiGetTrainingSessionParameters });
-        dispatch(setTrainingSessions(apiGetTrainingSessionResponse.trainingSessions));
-    }
-
-    function onFormFieldChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    function handleFieldChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         const { name, value } = event.target;
 
         setAuthenticationError(false);
 
-        setUser((prevData: User) => ({
+        setLoginUser((prevData: LoginUser) => ({
             ...prevData,
             [name]: value
         }));
-    };
-
-    const onSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        // TO DO: Add the logic for the unauthorized case 
-
-        try {
-            await login({ username: user.username, password: user.password });
-            router.push('/training-sessions');
-        }
-        catch (error) {
-            setAuthenticationError(true);
-        }
     }
 
+    const handleLogin = async () => {
+        try {
+            const loggedInUser: User | null = await login(loginUser.email, loginUser.password);
+            const idToken = await loggedInUser.getIdToken();
+
+            const apiGetTrainingSessionParameters: APIGetTrainingSessionParameters = {
+                key: idToken
+            }
+    
+            const apiGetTrainingSessionResponse: APIGetTrainingSessionResponse = await getTrainingSessions({ apiGetTrainingSessionParameters });
+            dispatch(setTrainingSessions(apiGetTrainingSessionResponse.trainingSessions));
+
+            router.push('/training-sessions');
+        } catch (err) {
+            setAuthenticationError(true);
+        }
+    };
+
     return {
-        user,
-        authenticationError,
-        onFormFieldChange,
-        onSubmit
+        loginUser,
+        handleFieldChange,
+        handleLogin,
+        authenticationError
     };
 }

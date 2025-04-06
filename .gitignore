@@ -45,3 +45,4 @@ next-env.d.ts
 
 #Google API
 my-gemini-test-app.json
+firebase.js

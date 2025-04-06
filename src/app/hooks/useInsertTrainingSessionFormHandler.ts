@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { RootState } from '@/app/repositories/store';
+import { useDispatch } from 'react-redux';
+import { User } from 'firebase/auth';
 
 import { APIInsertTrainingSessionParameters } from '@/app/repositories/api/parameters/APIInsertTrainingSessionParameters';
 import { APIInsertTrainingSessionResponse } from '@/app/repositories/api/responses/APIInsertTrainingSessionResponse';
@@ -11,10 +10,9 @@ import { addTrainingSession } from '@/app/repositories/redux/trainingSessions/sl
 
 import { initTrainingSession, trainingSessionHasEmptyField, TrainingSession } from '@/app/entities/TrainingSession';
 
-export default function useInsertTrainingSessionFormHandler() {
+export default function useInsertTrainingSessionFormHandler({ user }: { user: User }) {
     const dispatch = useDispatch();
 
-    const key: string | undefined = useSelector((state: RootState) => state.authentication.key);
     const [trainingSession, setTrainingSession] = useState<TrainingSession>(initTrainingSession());
     const [hasEmptyFieldsError, setHasEmptyFieldsError] = useState<boolean>(false);
 
@@ -37,12 +35,10 @@ export default function useInsertTrainingSessionFormHandler() {
             return;
         }
 
-        if (key === undefined) {
-            return;
-        }
+        const idToken = await user.getIdToken();
 
         const apiInsertTrainingSessionParameters: APIInsertTrainingSessionParameters = {
-            key,
+            key: idToken,
             trainingSession
         }
 
