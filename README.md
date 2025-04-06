@@ -77,6 +77,10 @@ On the first submission, the session will be added to those stored locally in th
 - Firebase: authentication handling
 - Vertex API: training sessions creation via prompt
 
+## Application diagram
+
+![Application diagram](assets/architecture.png?raw=true "Application diagram")
+
 ## Testing
 
 For unit testing use the following command:
