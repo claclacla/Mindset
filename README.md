@@ -73,6 +73,7 @@ On the first submission, the session will be added to those stored locally in th
 - MUI
 - Tailwind
 - Next.js
+- WebSocket
 - Firebase: authentication handling
 - Vertex API: training sessions creation via prompt
 
