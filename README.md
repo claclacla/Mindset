@@ -69,6 +69,7 @@ On the first submission, the session will be added to those stored locally in th
 ## Stack
 
 - Typescript
+- Docker
 - React
 - MUI
 - Tailwind
@@ -76,6 +77,9 @@ On the first submission, the session will be added to those stored locally in th
 - WebSocket
 - Firebase: authentication handling
 - Vertex API: training sessions creation via prompt
+- Responsive
+- Unit(Jest) e E2E(Playwright) testing
+
 
 ## Application diagram
 
